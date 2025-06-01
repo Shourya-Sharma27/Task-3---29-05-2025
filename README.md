@@ -20,16 +20,16 @@ with emphasis on documenting actionable insights.
  •	Registering and activating a trial license using an email (admin@root.com).
  •	Setting up login credentials and completing the initial configuration.
 
-3. Targeting a Localhost Windows Machine
+2. Targeting a Localhost Windows Machine
  The vulnerability scan targeted a fresh Windows installation hosted on VMware:
  •	Target IP: 192.168.141.131
  •	The machine had deliberately introduced vulnerabilities for testing purposes.
 
-4. Starting a Full Vulnerability Scan
+3. Starting a Full Vulnerability Scan
  •	From the Nessus dashboard, a new advanced scan was created.
  •	Target IP and scan parameters were set under the custom configuration.
  •	After initialization, Nessus performed a full scan against the Windows host.
-5. Reviewing the Results
+4. Reviewing the Results
  The scan reported a total of 311 vulnerabilities, classified as follows:
   Severity	Count
     Critical - 37
@@ -39,7 +39,7 @@ with emphasis on documenting actionable insights.
     Info -     173
 This classification helps prioritize remediation based on risk and exploitability.
 
-6. Documenting Critical Vulnerabilities
+5. Documenting Critical Vulnerabilities
  The critical vulnerabilities included outdated system components and well-known security flaws. Key examples:
 •	Missing Windows Security Updates (2020–2024):
 • KB4551853, KB5003171, KB5039217
@@ -49,26 +49,26 @@ This classification helps prioritize remediation based on risk and exploitabilit
 •	Mozilla Firefox < 128.0
 •	Oracle Java (April 2024 CPU) – RCE vulnerabilities
 
-7. Remediation Strategy
+6. Remediation Strategy
  Each critical issue was reviewed for fixability and immediate mitigation steps. Remedies include:
  1. Windows Security Updates
  •	Use Windows Update, WSUS, or SCCM to apply latest patches for:
    •	Windows 10 v1809
    •	Windows Server 2019
-2. Apache Log4j 1.x
+ 2. Apache Log4j 1.x
    •	Replace with Log4j 2.17.1+
    •	Remove legacy JARs, restart services
-3. Adobe Flash Player
+ 3. Adobe Flash Player
    •	Uninstall via Control Panel or use Adobe’s official uninstaller
-4. Microsoft Message Queuing
+ 4. Microsoft Message Queuing
    •	If unused, disable with:
 bash
 CopyEdit
 dism /Online /Disable-Feature /FeatureName:MSMQ-Server
    •	Else, patch using Microsoft’s security update
-5. Firefox < 128.0
+ 5. Firefox < 128.0
    •	Upgrade to latest version from Mozilla.org 
-6. Oracle Java
+ 6. Oracle Java
    •	Uninstall outdated versions
    •	Install the latest supported LTS version (e.g., Java 17 or 21)
 7. Saving Results
